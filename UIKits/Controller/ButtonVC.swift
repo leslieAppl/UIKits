@@ -49,6 +49,28 @@ class ButtonVC: UIViewController {
         creatingSegmentedControl()
         modifyingSegmentedControl()
         addingNewButtonsToSegmentedControl()
+        
+        //UISwitch
+        //Creating a switch
+        creatingSwitch(x: 100, y: 370) { (_) in }
+        
+        //Switching the switch on
+        creatingSwitch(x: 200, y: 370) { (mySwitch) in
+            if !mySwitch.isOn {
+                mySwitch.setOn(true, animated: true)
+            }
+        }
+        
+        //Changing the colors of the switch
+        creatingSwitch(x: 300, y: 370) { (mySwitch) in
+            let colorBackground = UIColor(red: 0.9, green: 0.9, blue: 0.1, alpha: 1.0)
+            let colorButton = UIColor(red: 0.5, green: 0.5, blue: 1.0, alpha: 1.0)
+            
+            mySwitch.onTintColor = colorBackground
+            mySwitch.tintColor = colorBackground
+            mySwitch.thumbTintColor = colorButton
+        }
+        
     }
     
     func creatingSimpleButtons(type: UIButton.ButtonType, x: CGFloat = 50, y: CGFloat = 50) {
@@ -92,6 +114,18 @@ class ButtonVC: UIViewController {
         segment.insertSegment(withTitle: "Not Sure", at: 2, animated: false)
         
         self.view.addSubview(segment)
+    }
+    
+    //@escaping: Escaping local variables through type closure parameters to the caller.
+    //for expanding manipulating the escaped variables.
+    func creatingSwitch(x: CGFloat, y: CGFloat, handler: @escaping (_ switch: UISwitch) -> () ) {
+        //UISwitch uses the UIView initializer to declare the area of the view,
+        //but the size component is ignored because the switch always has a size by default.
+        let mySwitch = UISwitch(frame: CGRect(x: x, y: y, width: 0, height: 0))
+        
+        handler(mySwitch)
+        
+        self.view.addSubview(mySwitch)
     }
 
 }

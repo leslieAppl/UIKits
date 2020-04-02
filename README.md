@@ -40,5 +40,20 @@
 
 ## UISegmentedControl
 
+## UISwitch
+- @escaping
+
+        //@escaping: Escaping local variables through type closure parameters to the caller.
+        //for expanding manipulating the escaped variables.
+        func creatingSwitch(x: CGFloat, y: CGFloat, handler: @escaping (_ switch: UISwitch) -> () ) {
+        
+            //UISwitch uses the UIView initializer to declare the area of the view,
+            //but the size component is ignored because the switch always has a size by default.
+            let mySwitch = UISwitch(frame: CGRect(x: x, y: y, width: 0, height: 0))
+            
+            handler(mySwitch)
+            
+            self.view.addSubview(mySwitch)
+        }
 
 
