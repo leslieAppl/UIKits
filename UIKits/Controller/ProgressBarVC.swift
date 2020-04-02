@@ -21,11 +21,6 @@ class ProgressBarVC: UIViewController {
     func creatingProgressBar() {
         let progressBar = UIProgressView(progressViewStyle: .default)
         
-        //frame property of subview refers to the view’s External Frame
-        //(its superview’s coordinate system).
-        //bounds property of subview refers to the view’s Internal Frame
-        //(its own coordinate system).
-        
         //width: 200 points (pixcel * scale = point)
         
         //The Progress View has a size by default, but it adapts to the size of its view.
