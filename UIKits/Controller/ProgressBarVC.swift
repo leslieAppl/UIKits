@@ -18,6 +18,7 @@ class ProgressBarVC: UIViewController {
         creatingActivityIndicator()
     }
     
+    //MARK: UIProgressView
     func creatingProgressBar() {
         let progressBar = UIProgressView(progressViewStyle: .default)
         
@@ -48,6 +49,7 @@ class ProgressBarVC: UIViewController {
         self.view.addSubview(progressBar)
     }
     
+    //MARK: - UIActivityIndicatorView
     func creatingActivityIndicator() {
         let progress = UIActivityIndicatorView(style: .medium)
         progress.frame.origin = CGPoint(x: 50, y: 200)

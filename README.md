@@ -56,4 +56,6 @@
             self.view.addSubview(mySwitch)
         }
 
+## UISlider
+
 

@@ -13,7 +13,7 @@ class ButtonVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //UIButton - Simple
+        //TODO: - UIButton - Simple
         creatingSimpleButtons(type: .close)
         creatingSimpleButtons(type: .contactAdd, y: 100)
         creatingSimpleButtons(type: .detailDisclosure, y: 150)
@@ -21,7 +21,7 @@ class ButtonVC: UIViewController {
         creatingSimpleButtons(type: .infoLight, y: 250)
         creatingSimpleButtons(type: .roundedRect, y: 300)
         
-        //UIButton - System and Custom
+        //TODO: - UIButton - System and Custom
         creatingCustomButtons(type: .system) { (button) in
             button.setTitleColor(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1), for: .normal)
             button.backgroundColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
@@ -45,12 +45,12 @@ class ButtonVC: UIViewController {
             self.view.addSubview(button)
         }
         
-        //UISegmentedControl
+        //TODO: - UISegmentedControl
         creatingSegmentedControl()
         modifyingSegmentedControl()
         addingNewButtonsToSegmentedControl()
         
-        //UISwitch
+        //TODO: - UISwitch
         //Creating a switch
         creatingSwitch(x: 100, y: 370) { (_) in }
         
@@ -71,8 +71,22 @@ class ButtonVC: UIViewController {
             mySwitch.thumbTintColor = colorButton
         }
         
+        //TODO: - UISlider
+        //Setting the values for the slider
+        creatingSlider(x: 100, y: 420, width: 200, height: 31) { (slider) in
+            slider.value = 0.6
+        }
+        
+        //Changeing the colors of the Slider
+        creatingSlider(x: 100, y: 470, width: 250, height: 31) { (slider) in
+            slider.value = 0.9
+            slider.minimumTrackTintColor = UIColor.red
+            slider.maximumTrackTintColor = UIColor.blue
+        }
+        
     }
     
+    //MARK: - UIButton - Simple
     func creatingSimpleButtons(type: UIButton.ButtonType, x: CGFloat = 50, y: CGFloat = 50) {
         let button = UIButton(type: type)
         button.frame.origin = CGPoint(x: x, y: y)
@@ -80,6 +94,7 @@ class ButtonVC: UIViewController {
         self.view.addSubview(button)
     }
     
+    //MARK: - UIButton - System and Custom
     //@escaping: Escaping local variables through type closure parameters to the caller.
     //for expanding manipulating the escaped variables.
     func creatingCustomButtons(type: UIButton.ButtonType, x: CGFloat = 100, y: CGFloat = 50, width: CGFloat = 100, height: CGFloat = 32, handler: @escaping (_ button: UIButton) -> ()) {
@@ -92,6 +107,7 @@ class ButtonVC: UIViewController {
         handler(button)
     }
     
+    //MARK: - UISegmentedControl
     func creatingSegmentedControl() {
         let segment = UISegmentedControl(items: ["Yes", "No"])
         segment.frame.origin = CGPoint(x: 100, y: 200)
@@ -116,6 +132,7 @@ class ButtonVC: UIViewController {
         self.view.addSubview(segment)
     }
     
+    //MARK: - UISwitch
     //@escaping: Escaping local variables through type closure parameters to the caller.
     //for expanding manipulating the escaped variables.
     func creatingSwitch(x: CGFloat, y: CGFloat, handler: @escaping (_ switch: UISwitch) -> () ) {
@@ -126,6 +143,17 @@ class ButtonVC: UIViewController {
         handler(mySwitch)
         
         self.view.addSubview(mySwitch)
+    }
+    
+    //MARK: - UISlider
+    func creatingSlider(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat, handler: @escaping (_ slider: UISlider) -> ()) {
+        let slider = UISlider(frame: CGRect(x: x, y: y, width: width, height: height))
+        slider.minimumValue = 0.0
+        slider.maximumValue = 1.0
+        
+        handler(slider)
+        
+        self.view.addSubview(slider)
     }
 
 }
