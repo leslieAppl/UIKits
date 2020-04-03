@@ -84,6 +84,18 @@ class ButtonVC: UIViewController {
             slider.maximumTrackTintColor = UIColor.blue
         }
         
+        //TODO: - UIStepper
+        //Cteating a Stepper
+        creatingStepper(x: 100, y: 520) { (_) in }
+        
+        //Setting the values for the Stepper
+        creatingStepper(x: 100, y: 570) { (stepper) in
+            stepper.value = 4.0
+            stepper.minimumValue = 1.0
+            stepper.maximumValue = 9.0
+            stepper.stepValue = 0.5
+        }
+        
     }
     
     //MARK: - UIButton - Simple
@@ -154,6 +166,15 @@ class ButtonVC: UIViewController {
         handler(slider)
         
         self.view.addSubview(slider)
+    }
+    
+    //MARK: - UIStepper
+    func creatingStepper(x: CGFloat, y: CGFloat, handler: @escaping (_ stepper: UIStepper) -> ()) {
+        let stepper = UIStepper(frame: CGRect(x: x, y: y, width: 0, height: 0))
+        
+        handler(stepper)
+        
+        self.view.addSubview(stepper)
     }
 
 }
