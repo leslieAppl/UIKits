@@ -39,6 +39,8 @@
         UIButton.ButtonType.custom
 
 - button.addtarget(target, action, event)
+- tabBarController?.selectedIndex = 0   //switch the tab programmatically
+
 
         creatingCustomButtons(type: .custom, y: 150, width: 150) { (button) in
             button.titleLabel?.font = UIFont(name: "Menlo-Bold", size: 22)
@@ -58,9 +60,49 @@
             let list = self.tabBarController?.viewControllers
             let controller = list?[0] as! LabelsVC
             controller.myLabel.text = "\(counter)"
+            
+            //switch tab programmatically
+            //        tabBarController?.selectedIndex = 0   //Optional 1
+            tabBarController?.selectedViewController = controller   //Optional 2
+
         }
 
 ## UISegmentedControl
+- segment.addTarget(target, action, event)
+- tabBarController?.selectedIndex = 0   //switch tab programmatically
+
+        func addingNewButtonsToSegmentedControl() {
+            let segment = UISegmentedControl(items: ["Yes", "No"])
+            segment.frame = CGRect(x: 100, y: 300, width: 200, height: 50)
+            segment.insertSegment(withTitle: "Not Sure", at: 2, animated: false)
+            
+            self.view.addSubview(segment)
+            
+            segment.addTarget(self, action: #selector(self.selectColor(_:)), for: .valueChanged)
+        }
+
+            @objc func selectColor(_ sender: UISegmentedControl) {
+                let list = tabBarController?.viewControllers
+                let controller = list?[0] as! LabelsVC
+                
+                if sender.selectedSegmentIndex == 0 {
+                    controller.segmentLbl.text = "Yes"
+                    controller.segmentLbl.backgroundColor = .green
+                } else if sender.selectedSegmentIndex == 1 {
+                    controller.segmentLbl.text = "No"
+                    controller.segmentLbl.backgroundColor = .red
+                } else if sender.selectedSegmentIndex == 2 {
+                    controller.segmentLbl.text = "Not Sure"
+                    controller.segmentLbl.backgroundColor = .blue
+                }
+                
+                //Switch tab programmatically
+        //        self.tabBarController?.show(controller, sender: self)     //Error
+        //        self.tabBarController?.present(controller, animated: true, completion: nil)   //Error
+                tabBarController?.selectedIndex = 0     //Optional 1
+                tabBarController?.selectedViewController = controller   //Optional 2
+            }
+
 
 ## UISwitch
 - @escaping

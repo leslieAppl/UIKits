@@ -11,7 +11,9 @@ import UIKit
 class LabelsVC: UIViewController {
     
     var y: CGFloat = 50
-    var myLabel: UILabel!
+    
+    var buttonLbl: UILabel!
+    var segmentLbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,10 +59,10 @@ class LabelsVC: UIViewController {
 
         let myFont = UIFont(name: "Georgia-Italic", size: 30)
         
-        myLabel = basicLabel(y: y, width: 300, height: 50)
-        myLabel.font = myFont
+        buttonLbl = basicLabel(y: y, width: 300, height: 50)
+        buttonLbl.font = myFont
         
-        self.view.addSubview(myLabel)
+        self.view.addSubview(buttonLbl)
     }
     
     func usingSystemStandardFont() {
@@ -68,10 +70,10 @@ class LabelsVC: UIViewController {
 
         let myFont = UIFont.systemFont(ofSize: 30)
         
-        let label = basicLabel(y: y, width: 300, height: 50)
-        label.font = myFont
+        segmentLbl = basicLabel(y: y, width: 300, height: 50)
+        segmentLbl.font = myFont
         
-        self.view.addSubview(label)
+        self.view.addSubview(segmentLbl)
     }
     
     func gettingFontSizeByDefaultFotButtons() {
