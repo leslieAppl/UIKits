@@ -14,7 +14,8 @@ class ButtonVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //MARK: UIButton - Simple
+        
+        //UIButton - Simple
         creatingSimpleButtons(type: .close)
         creatingSimpleButtons(type: .contactAdd, y: 100)
         creatingSimpleButtons(type: .detailDisclosure, y: 150)
@@ -22,7 +23,7 @@ class ButtonVC: UIViewController {
         creatingSimpleButtons(type: .infoLight, y: 250)
         creatingSimpleButtons(type: .roundedRect, y: 300)
         
-        //MARK: UIButton - System and Custom
+        //UIButton - System and Custom
         creatingCustomButtons(type: .system) { (button) in
             button.setTitleColor(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1), for: .normal)
             button.backgroundColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
@@ -45,17 +46,16 @@ class ButtonVC: UIViewController {
             
             self.view.addSubview(button)
             
-            //MARK: The 'Touch UP Inside' Event to perform an Action.
+            //MARK: 'Touch UP Inside' Event to perform an Action.
             button.addTarget(self, action: #selector(self.showCounter(_:)), for: .touchUpInside)
             
         }
         
-        //MARK: UISegmentedControl
+        //UISegmentedControl
         creatingSegmentedControl()
         modifyingSegmentedControl()
         addingNewButtonsToSegmentedControl()
         
-        //MARK: UISwitch
         //Creating a switch
         creatingSwitch(x: 100, y: 370) { (_) in }
         
@@ -74,9 +74,12 @@ class ButtonVC: UIViewController {
             mySwitch.onTintColor = colorBackground
             mySwitch.tintColor = colorBackground
             mySwitch.thumbTintColor = colorButton
+            
+            //MARK: 'Value Changed' Event to perform an Action.
+            mySwitch.addTarget(self, action: #selector(self.switchColor(_:)), for: .valueChanged)
+
         }
         
-        //MARK: UISlider
         //Setting the values for the slider
         creatingSlider(x: 100, y: 420, width: 200, height: 31) { (slider) in
             slider.value = 0.6
@@ -89,7 +92,6 @@ class ButtonVC: UIViewController {
             slider.maximumTrackTintColor = UIColor.blue
         }
         
-        //MARK: UIStepper
         //Cteating a Stepper
         creatingStepper(x: 100, y: 520) { (_) in }
         
@@ -102,20 +104,7 @@ class ButtonVC: UIViewController {
         }
         
     }
-    
-    //MARK: button.addTarget(action:)
-    @objc func showCounter(_ sender: UIButton) {
-        counter += 1
         
-        let list = self.tabBarController?.viewControllers
-        let controller = list?[0] as! LabelsVC
-        controller.buttonLbl.text = "\(counter)"
-        
-        //switch tab programmatically
-        tabBarController?.selectedIndex = 0   //Optional 1
-//        tabBarController?.selectedViewController = controller   //Optional 2
-    }
-    
     //MARK: - UIButton - Simple
     func creatingSimpleButtons(type: UIButton.ButtonType, x: CGFloat = 50, y: CGFloat = 50) {
         let button = UIButton(type: type)
@@ -136,6 +125,19 @@ class ButtonVC: UIViewController {
         
         handler(button)
         
+    }
+    
+    //button.addTarget(action:)
+    @objc func showCounter(_ sender: UIButton) {
+        counter += 1
+        
+        let list = self.tabBarController?.viewControllers
+        let controller = list?[0] as! LabelsVC
+        controller.buttonLbl.text = "\(counter)"
+        
+        //switch tab programmatically
+        tabBarController?.selectedIndex = 0   //Optional 1
+        //        tabBarController?.selectedViewController = controller   //Optional 2
     }
         
     //MARK: - UISegmentedControl
@@ -162,7 +164,7 @@ class ButtonVC: UIViewController {
         
         self.view.addSubview(segment)
         
-        //The 'value changed' Event to perform an Action.
+        //MARK: 'Value Changed' Event to perform an Action.
         segment.addTarget(self, action: #selector(self.selectColor(_:)), for: .valueChanged)
     }
     
@@ -200,6 +202,23 @@ class ButtonVC: UIViewController {
         handler(mySwitch)
         
         self.view.addSubview(mySwitch)
+        
+        
+    }
+    
+    @objc func switchColor(_ sender: UISwitch) {
+        let list = tabBarController?.viewControllers
+        let controller = list?[0] as! LabelsVC
+
+        if sender.isOn {
+            controller.switchLbl.text = "On"
+            controller.switchLbl.backgroundColor = .red
+            
+            tabBarController?.selectedIndex = 0
+        } else {
+            controller.switchLbl.text = "Off"
+            controller.switchLbl.backgroundColor = .gray
+        }
     }
     
     //MARK: - UISlider

@@ -14,6 +14,7 @@ class LabelsVC: UIViewController {
     
     var buttonLbl: UILabel!
     var segmentLbl: UILabel!
+    var switchLbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,10 +83,10 @@ class LabelsVC: UIViewController {
         let size = UIFont.buttonFontSize
         let myFont = UIFont.systemFont(ofSize: size)
         
-        let label = basicLabel(y: y, width: 300, height: 50)
-        label.font = myFont
+        switchLbl = basicLabel(y: y, width: 300, height: 50)
+        switchLbl.font = myFont
         
-        self.view.addSubview(label)
+        self.view.addSubview(switchLbl)
     }
     
     func clippingLabelText() {

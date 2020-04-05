@@ -120,6 +120,8 @@
             self.view.addSubview(mySwitch)
         }
 
+- mySwitch.addtarget(target, action, event)
+
 ## UISlider
 
 ## UIStepper
