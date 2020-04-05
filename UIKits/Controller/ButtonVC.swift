@@ -14,8 +14,7 @@ class ButtonVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //TODO: - UIButton - Simple
+        //MARK: UIButton - Simple
         creatingSimpleButtons(type: .close)
         creatingSimpleButtons(type: .contactAdd, y: 100)
         creatingSimpleButtons(type: .detailDisclosure, y: 150)
@@ -23,7 +22,7 @@ class ButtonVC: UIViewController {
         creatingSimpleButtons(type: .infoLight, y: 250)
         creatingSimpleButtons(type: .roundedRect, y: 300)
         
-        //TODO: - UIButton - System and Custom
+        //MARK: UIButton - System and Custom
         creatingCustomButtons(type: .system) { (button) in
             button.setTitleColor(#colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1), for: .normal)
             button.backgroundColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
@@ -46,16 +45,17 @@ class ButtonVC: UIViewController {
             
             self.view.addSubview(button)
             
+            //MARK: The 'Touch UP Inside' Event to perform an Action.
             button.addTarget(self, action: #selector(self.showCounter(_:)), for: .touchUpInside)
             
         }
         
-        //TODO: - UISegmentedControl
+        //MARK: UISegmentedControl
         creatingSegmentedControl()
         modifyingSegmentedControl()
         addingNewButtonsToSegmentedControl()
         
-        //TODO: - UISwitch
+        //MARK: UISwitch
         //Creating a switch
         creatingSwitch(x: 100, y: 370) { (_) in }
         
@@ -76,7 +76,7 @@ class ButtonVC: UIViewController {
             mySwitch.thumbTintColor = colorButton
         }
         
-        //TODO: - UISlider
+        //MARK: UISlider
         //Setting the values for the slider
         creatingSlider(x: 100, y: 420, width: 200, height: 31) { (slider) in
             slider.value = 0.6
@@ -89,7 +89,7 @@ class ButtonVC: UIViewController {
             slider.maximumTrackTintColor = UIColor.blue
         }
         
-        //TODO: - UIStepper
+        //MARK: UIStepper
         //Cteating a Stepper
         creatingStepper(x: 100, y: 520) { (_) in }
         
@@ -103,7 +103,7 @@ class ButtonVC: UIViewController {
         
     }
     
-    //TODO: - button.addTarget(action:)
+    //MARK: button.addTarget(action:)
     @objc func showCounter(_ sender: UIButton) {
         counter += 1
         
@@ -162,6 +162,7 @@ class ButtonVC: UIViewController {
         
         self.view.addSubview(segment)
         
+        //The 'value changed' Event to perform an Action.
         segment.addTarget(self, action: #selector(self.selectColor(_:)), for: .valueChanged)
     }
     
@@ -220,5 +221,5 @@ class ButtonVC: UIViewController {
         
         self.view.addSubview(stepper)
     }
-
+    
 }
