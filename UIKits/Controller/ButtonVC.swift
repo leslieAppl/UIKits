@@ -213,12 +213,12 @@ class ButtonVC: UIViewController {
         if sender.isOn {
             controller.switchLbl.text = "On"
             controller.switchLbl.backgroundColor = .red
-            
-            tabBarController?.selectedIndex = 0
         } else {
             controller.switchLbl.text = "Off"
             controller.switchLbl.backgroundColor = .gray
         }
+        
+        tabBarController?.selectedIndex = 0
     }
     
     //MARK: - UISlider
