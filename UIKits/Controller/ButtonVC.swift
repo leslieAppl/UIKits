@@ -10,6 +10,8 @@ import UIKit
 
 class ButtonVC: UIViewController {
     
+    var counter: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,6 +45,9 @@ class ButtonVC: UIViewController {
             button.backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
             
             self.view.addSubview(button)
+            
+            button.addTarget(self, action: #selector(self.showCounter(_:)), for: .touchUpInside)
+
         }
         
         //TODO: - UISegmentedControl
@@ -98,6 +103,15 @@ class ButtonVC: UIViewController {
         
     }
     
+    //TODO: - button.addTarget(action:)
+    @objc func showCounter(_ sender: UIButton) {
+        counter += 1
+        
+        let list = self.tabBarController?.viewControllers
+        let controller = list?[0] as! LabelsVC
+        controller.myLabel.text = "\(counter)"
+    }
+    
     //MARK: - UIButton - Simple
     func creatingSimpleButtons(type: UIButton.ButtonType, x: CGFloat = 50, y: CGFloat = 50) {
         let button = UIButton(type: type)
@@ -117,8 +131,9 @@ class ButtonVC: UIViewController {
         button.setTitle("Tap Here", for: .normal)
         
         handler(button)
+        
     }
-    
+        
     //MARK: - UISegmentedControl
     func creatingSegmentedControl() {
         let segment = UISegmentedControl(items: ["Yes", "No"])

@@ -9,7 +9,9 @@
 import UIKit
 
 class LabelsVC: UIViewController {
+    
     var y: CGFloat = 50
+    var myLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,10 +57,10 @@ class LabelsVC: UIViewController {
 
         let myFont = UIFont(name: "Georgia-Italic", size: 30)
         
-        let label = basicLabel(y: y, width: 300, height: 50)
-        label.font = myFont
+        myLabel = basicLabel(y: y, width: 300, height: 50)
+        myLabel.font = myFont
         
-        self.view.addSubview(label)
+        self.view.addSubview(myLabel)
     }
     
     func usingSystemStandardFont() {

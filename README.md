@@ -38,6 +38,28 @@
         UIButton.ButtonType.system
         UIButton.ButtonType.custom
 
+- button.addtarget(target, action, event)
+
+        creatingCustomButtons(type: .custom, y: 150, width: 150) { (button) in
+            button.titleLabel?.font = UIFont(name: "Menlo-Bold", size: 22)
+            button.setTitleColor(#colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1), for: .normal)
+            button.backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
+            
+            self.view.addSubview(button)
+            
+            button.addTarget(self, action: #selector(self.showCounter(_:)), for: .touchUpInside)
+
+        }
+        
+        //TODO: - button.addTarget(action:)
+        @objc func showCounter(_ sender: UIButton) {
+            counter += 1
+            
+            let list = self.tabBarController?.viewControllers
+            let controller = list?[0] as! LabelsVC
+            controller.myLabel.text = "\(counter)"
+        }
+
 ## UISegmentedControl
 
 ## UISwitch
