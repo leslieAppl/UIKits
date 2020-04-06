@@ -9,10 +9,13 @@
 import UIKit
 
 class ProgressBarVC: UIViewController {
-    
+    var activityIndicatorFlag: Bool!
+
     var progressBarShort: UIProgressView!
     var progressBarLong: UIProgressView!
-    
+    var activityIndicator: UIActivityIndicatorView!
+    let button = UIButton(type: .custom)
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,6 +23,7 @@ class ProgressBarVC: UIViewController {
         customizingProgressBar()
         creatingSlider()
         creatingActivityIndicator()
+        creatingButton()
     }
     
     //MARK: UIProgressView
@@ -76,17 +80,63 @@ class ProgressBarVC: UIViewController {
     
     //MARK: - UIActivityIndicatorView
     func creatingActivityIndicator() {
-        let progress = UIActivityIndicatorView(style: .medium)
-        progress.frame.origin = CGPoint(x: 50, y: 200)
-        progress.color = UIColor.red
-        progress.startAnimating()
+        activityIndicator = UIActivityIndicatorView(style: .medium)
+        activityIndicator.frame.origin = CGPoint(x: 50, y: 200)
+        activityIndicator.color = UIColor.red
+        activityIndicator.startAnimating()
         
-        if progress.isAnimating {
+        activityIndicatorFlag = true
+        
+        if activityIndicator.isAnimating {
             print("In Progress")
         }
         
-        self.view.addSubview(progress)
+        self.view.addSubview(activityIndicator)
     }
     
+    //MARK: - UIButton
+    func creatingButton() {
+        
+        button.frame = CGRect(x: 100, y: 200, width: 100, height: 31)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 28)
+        button.backgroundColor = .gray
+
+        switch activityIndicatorFlag {
+        case true:
+            button.setTitle("Stop", for: .normal)
+            button.setTitleColor(.red, for: .normal)
+        case false:
+            button.setTitle("Start", for: .normal)
+            button.setTitleColor(.green, for: .normal)
+        case .none:
+            return
+        case .some(_):
+            return
+        }
+
+        self.view.addSubview(button)
+        
+        button.addTarget(self, action: #selector(self.stopActivityIndicator(_:)), for: .touchUpInside)
+    }
+    
+    @objc func stopActivityIndicator(_ sender: UIButton) {
+        switch activityIndicatorFlag {
+        case true:
+            activityIndicatorFlag = false
+            
+            button.setTitle("Start", for: .normal)
+            button.setTitleColor(.green, for: .normal)
+            
+            activityIndicator.stopAnimating()
+
+        default:
+            activityIndicatorFlag = true
+            
+            button.setTitle("Stop", for: .normal)
+            button.setTitleColor(.red, for: .normal)
+            
+            activityIndicator.startAnimating()
+        }
+    }
 }
 
