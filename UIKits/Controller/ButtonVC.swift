@@ -93,7 +93,11 @@ class ButtonVC: UIViewController {
         }
         
         //Cteating a Stepper
-        creatingStepper(x: 100, y: 520) { (_) in }
+        creatingStepper(x: 100, y: 520) { (stepper) in
+            
+            //MARK: 'Value Changed' Event to perform an Action.
+            stepper.addTarget(self, action: #selector(self.increment(_:)), for: .valueChanged)
+        }
         
         //Setting the values for the Stepper
         creatingStepper(x: 100, y: 570) { (stepper) in
@@ -230,6 +234,16 @@ class ButtonVC: UIViewController {
         handler(slider)
         
         self.view.addSubview(slider)
+        
+        //MARK: 'Value Changed' Event to perform an Action.
+        slider.addTarget(self, action: #selector(self.updateProgress(_:)), for: .valueChanged)
+    }
+    
+    @objc func updateProgress(_ sender: UISlider) {
+        let list = self.tabBarController?.viewControllers
+        let controller = list?[0] as! LabelsVC
+        
+        controller.sliderLbl.text = "\(sender.value)"
     }
     
     //MARK: - UIStepper
@@ -241,4 +255,14 @@ class ButtonVC: UIViewController {
         self.view.addSubview(stepper)
     }
     
+    @objc func increment(_ sender: UIStepper) {
+        let list = self.tabBarController?.viewControllers
+        let controller = list?[0] as! LabelsVC
+        
+        controller.stepperLbl.text = "\(sender.value)"
+        
+        tabBarController?.selectedIndex = 0
+    }
+    
+    //MARK: = UISlider
 }

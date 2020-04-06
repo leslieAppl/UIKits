@@ -15,6 +15,8 @@ class LabelsVC: UIViewController {
     var buttonLbl: UILabel!
     var segmentLbl: UILabel!
     var switchLbl: UILabel!
+    var stepperLbl: UILabel!
+    var sliderLbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,10 +94,10 @@ class LabelsVC: UIViewController {
     func clippingLabelText() {
         y += 70
 
-        let label = basicLabel(y: y, width: 150, height: 30, text: "This is a Beautiful Life")
-        label.lineBreakMode = .byClipping
+        stepperLbl = basicLabel(y: y, width: 150, height: 30, text: "This is a Beautiful Life")
+        stepperLbl.lineBreakMode = .byClipping
         
-        self.view.addSubview(label)
+        self.view.addSubview(stepperLbl)
     }
     
     func customizingLabelText() {
@@ -104,12 +106,12 @@ class LabelsVC: UIViewController {
         let color = UIColor.blue
         let shadow = UIColor.lightGray
         
-        let label = basicLabel(y: y, width: 150, height: 30)
-        label.textColor = color
-        label.shadowColor = shadow
-        label.shadowOffset = CGSize(width: 2, height: 2)    // "2" means 2 points
+        sliderLbl = basicLabel(y: y, width: 150, height: 30)
+        sliderLbl.textColor = color
+        sliderLbl.shadowColor = shadow
+        sliderLbl.shadowOffset = CGSize(width: 2, height: 2)    // "2" means 2 points
         
-        self.view.addSubview(label)
+        self.view.addSubview(sliderLbl)
     }
     
     func AddingAttributesOneByOneToARangeOfCharacters() {

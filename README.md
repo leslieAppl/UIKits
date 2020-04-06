@@ -28,7 +28,8 @@
 ## UIActivityIndicatorView
 
 ## UIButton
-        
+//MARK: 'Touch UP Inside' Event to perform an Action.
+
         UIButton.ButtonType.close
         UIButton.ButtonType.contactAdd
         UIButton.ButtonType.detailDisclosure
@@ -68,6 +69,7 @@
         }
 
 ## UISegmentedControl
+//MARK: 'Value Changed' Event to perform an Action.
 - segment.addTarget(target, action, event)
 - tabBarController?.selectedIndex = 0   //switch tab programmatically
 
@@ -105,6 +107,7 @@
 
 
 ## UISwitch
+//MARK: 'Value Changed' Event to perform an Action.
 - @escaping
 
         //@escaping: Escaping local variables through type closure parameters to the caller.
@@ -123,5 +126,10 @@
 - mySwitch.addtarget(target, action, event)
 
 ## UISlider
+//MARK: 'Value Changed' Event to perform an Action.
+- slider.addTarget(target, action, event)
+
 
 ## UIStepper
+//MARK: 'Value Changed' Event to perform an Action.
+- stepper.addTarget(target, action, event)
